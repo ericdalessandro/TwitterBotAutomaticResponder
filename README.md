@@ -1,2 +1,4 @@
-# twitter_bot_stream_link
-This bot will respond to Twitter users that mention me with a key phrase and will automatically respond with the link to my Twitch.
+# Twitter Bot: Stream Responder 
+This Twitter bot looks for Twitter mentions with a key phrase and will automatically respond with a link to a Twitch stream.
+
+This is a simple bot that I made primarily to learn how the Twitter API works and how to work with the Python Tweepy library.
