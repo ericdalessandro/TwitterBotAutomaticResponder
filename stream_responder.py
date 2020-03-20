@@ -1,6 +1,6 @@
-import tweepy, time
+import tweepy, time, csv
 
-ACCESS_KEY = '-'
+ACCESS_KEY = ''
 ACCESS_SECRET = ''
 CONSUMER_KEY =  ''
 CONSUMER_SECRET = ''
@@ -10,8 +10,8 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 FILE_NAME = 'last_seen_id.txt'
-# TODO change this to read from a file instead of a list.
-KEY_PHRASES = ['stream schedule', 'stream time', 'stream when', 'when do you stream', 'when are you streaming']
+KEYWORDS_FILE_NAME = 'schedule_keywords.txt'
+KEY_PHRASES = []
 
 def retrieve_last_seen_id(file_name):
     f_read = open(file_name, 'r')
@@ -54,6 +54,11 @@ def reply_to_tweets():
                                       'and Thursdays at 4pm (EST) and whenever else I have the chance! - HedgiBot',
                                       mention.id)
                     print('Response sent.')
+
+with open(KEYWORDS_FILE_NAME) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    for row in csv_reader:
+        KEY_PHRASES.append(str(row)[2:-2])
 
 while True:
     reply_to_tweets()
